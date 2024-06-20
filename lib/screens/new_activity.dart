@@ -1,19 +1,13 @@
 import 'package:fitness_time/models/activity.dart';
 import 'package:flutter/material.dart';
 
-class NewActivity extends StatefulWidget {
+class NewActivity extends StatelessWidget {
   const NewActivity({super.key});
 
   @override
-  State<NewActivity> createState() => _NewActivityState();
-}
-
-class _NewActivityState extends State<NewActivity> {
-  TextEditingController activityController = TextEditingController();
-  TextEditingController distanceController = TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
+    TextEditingController activityController = TextEditingController();
+    TextEditingController distanceController = TextEditingController();
     return Scaffold(
         appBar: AppBar(
           title: const Text("Nueva actividad"),
@@ -36,7 +30,7 @@ class _NewActivityState extends State<NewActivity> {
                   labelText: 'Distancia',
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () {
                   var activityType = activityController.text;

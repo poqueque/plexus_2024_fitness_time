@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'new_activity.dart';
 
+List<Activity> activities = [];
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -13,8 +15,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Activity> activities = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +47,36 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-            for (var activity in activities) ActivityCard(activity: activity),
+            for (var activity in activities)
+              Dismissible(
+                key: UniqueKey(),
+                onDismissed: (direction) {
+                  activities.remove(activity);
+                },
+                child: InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ListTile(
+                                leading: const Icon(Icons.delete),
+                                title: const Text("Eliminar actividad"),
+                                onTap: () {
+                                  activities.remove(activity);
+                                  setState(() {});
+                                  Navigator.pop(context);
+                                },
+                              )
+                            ],
+                          );
+                        });
+                  },
+                  child: ActivityCard(activity: activity),
+                ),
+              ),
           ],
         ),
       ),
