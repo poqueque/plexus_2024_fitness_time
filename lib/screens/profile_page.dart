@@ -1,5 +1,5 @@
 import 'package:fitness_time/styles/app_styles.dart';
-import 'package:fitness_time/widgets/datacard.dart';
+import 'package:fitness_time/widgets/data_card.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
